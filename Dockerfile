@@ -1,8 +1,14 @@
-FROM openjdk:11
+FROM eclipse-temurin:latest
 
 WORKDIR /usr/src/myserver
 
-COPY src .
 
-RUN mv Main.java
-CMD ["java", "Main"]
+COPY .mvn .mvn
+COPY pom.xml pom.xml
+COPY mvnw mvnw
+
+RUN ./mvnw dependency:resolve
+
+COPY src src
+
+CMD ["./mvnw", "spring-boot:run"]

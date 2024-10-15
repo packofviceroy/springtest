@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="ru">
+
 <head resURL="/static/c7f15257" data-rooturl="" data-resurl="/static/c7f15257" data-imagesurl="/static/c7f15257/images">
     <title>Sign in site</title>
     <meta name="ROBOTS" content="NOFOLLOW">
@@ -9,6 +9,7 @@
     <link sizes="any" rel="alternate icon" href="/static/c7f15257/favicon.ico">
     <link rel="stylesheet" href="login.css" type="text/css">
 </head>
+
 <body class="app-sign-in-register">
     <section class="app-sign-in-register__branding">
         <div class="app-sign-in-register__branding__starburst"></div>
@@ -16,10 +17,11 @@
     <main id="main-panel" class="app-sign-in-register__content">
         <div class="app-sign-in-register__content-inner">
             <h1>Sign in to test spring</h1>
-            <form method="post" name="login" action="j_spring_security_check">
+            <form method="post" name="login" >
                 <div>
                     <label class="app-sign-in-register__form-label" for="t_username">Username</label>
-                    <input autocorrect="off" autocomplete="off" name="t_username" id="t_username" type="text" autofocus="autofocus" class="input-class" autocapitalize="off">
+                    <input autocorrect="off" autocomplete="off" name="t_username" id="t_username" type="text"
+                        autofocus="autofocus" class="input-class" autocapitalize="off">
                 </div>
                 <div>
                     <label class="app-sign-in-register__form-label" for="t_password">Password</label>
@@ -36,4 +38,6 @@
         </div>
     </main>
 </body>
+<script src=js/login.js></script>
+
 </html>

@@ -1,18 +1,42 @@
 #!groovy
 
 pipeline {
-	agent any
-	
-	stages{
-        stage('Docker Build') {
+    agent any
+    parameters {
+        booleanParam(
+                                name: 'Deploy_NGINX',
+                                defaultValue: false,
+                                description: 'Deploy NGINX'
+                            )
+        booleanParam(
+                                name: 'Build_App',
+                                defaultValue: false,
+                                description: 'Build App'
+                            )
+        booleanParam(
+                                name: 'Deploy_App',
+                                defaultValue: false,
+                                description: 'Deploy App'
+                            )
+    }
+    stages {
+        stage('Hello') {
             steps {
-                //git branch: 'main', credentialsId: 'github', url: 'git@github.com:packofviceroy/http_server.git/'
-      	        sh 'docker build -t javahttpsserver/latest .'
-            }
-        }
-        stage('Docker Test'){
-            steps{
-                sh 'docker run -d javahttpsserver/latest -p 8080:4337'
+                    script {
+                        if (params.Build_App) {
+                            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
+                            dir ("springtest"){
+                                sh 'docker build -t springtest/latest .'
+                            }
+                        }
+                        if (params.Deploy_App) {
+                            echo 'Deploy App!'
+                            sh 'docker run -d springtest/latest -p 8080:4337'
+                        }
+                        if (params.Deploy_NGINX) {
+                            echo 'Deploy NGINX!'
+                        }
+                    }
             }
         }
     }

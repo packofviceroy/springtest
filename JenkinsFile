@@ -28,7 +28,7 @@ pipeline {
                         }
                         if (params.Deploy_App) {
                             echo 'Deploy App!'
-                            sh 'docker run -d -t springtest/latest'
+                            sh 'docker run -p 4337:8080 -d -t springtest/latest'
                         }
                         if (params.Deploy_NGINX) {
                             echo 'Deploy NGINX!'

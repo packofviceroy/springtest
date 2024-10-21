@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springtest
+  name: springtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springtest
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springtest
+    spec:
+      containers:
+      - image: springtest/latest
+        name: latest
+        resources: {}
+        imagePullPolicy: Never
+
+status: {}

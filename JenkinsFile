@@ -24,7 +24,7 @@ pipeline {
                         if (params.Build_App) {
                             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
                                 echo "${WORKSPACE}"
-                                sh 'eval $(minikube docker-env)'
+                                sh 'eval $(minikube -p minikube docker-env)'
       	                        sh 'docker build -t springtest/latest .'
                         }
                         if (params.Deploy_App) {

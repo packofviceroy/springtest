@@ -24,7 +24,10 @@ pipeline {
                         if (params.Build_App) {
                             checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
                                 echo "${WORKSPACE}"
-                                sh 'eval $(minikube -p minikube docker-env)'
+                                sh 'export DOCKER_TLS_VERIFY="1"'
+                                sh 'export DOCKER_HOST="tcp://192.168.49.2:2376"'
+                                sh 'export DOCKER_CERT_PATH="/home/dumbo/.minikube/certs"'
+                                sh 'export MINIKUBE_ACTIVE_DOCKERD="minikube"'
       	                        sh 'docker build -t springtest/latest .'
                         }
                         if (params.Deploy_App) {

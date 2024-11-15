@@ -1,0 +1,81 @@
+pipeline {
+    agent any
+    parameters {
+        booleanParam(
+                                name: 'Deploy_NGINX',
+                                defaultValue: false,
+                                description: 'Deploy NGINX'
+                            )
+        booleanParam(
+                                name: 'Build_App',
+                                defaultValue: false,
+                                description: 'Build App'
+                            )
+        booleanParam(
+                                name: 'Deploy_App',
+                                defaultValue: false,
+                                description: 'Deploy App'
+                            )
+    }
+    stages {
+        stage('Start') {
+            steps{
+                createStages()
+            }
+        }
+    }
+}
+
+void createStages() {
+    def stagefuncsmap = [:]
+    script {
+        if (params.Build_App) {
+            stagefuncsmap.put('BuildApp', this.&buildApp)
+        }
+        if (params.Deploy_App) {
+            stagefuncsmap.put('DeployApp', this.&deployApp)
+        }
+        if (params.Deploy_NGINX) {
+            stagefuncsmap.put('DeployNGINX', this.&deployNGINX)
+        }
+    }
+
+    stagefuncsmap.each {
+        key, value -> 
+        stage( key ) {
+            value()
+        }
+    }
+}
+
+def buildApp() {
+    announceBaner('Build App!')
+    checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [],
+    userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
+    sh 'eval $(minikube docker-env) && docker build -t springtest/latest .'
+}
+
+void deployApp() {
+    announceBaner('Deploy App!')
+    sh 'kubectl apply -f deployment.yml'
+}
+
+void deployNGINX() {
+    announceBaner('Deploy NGINX!')
+}
+
+void announceBaner(msgs) {
+    ansiColor('xterm') {
+        echo "\033[32m${createBanner(msgs)}\033[0m"
+    }
+}
+
+String createBanner(msgs) {
+    return """
+####################################
+
+${msgs}
+
+####################################
+"""
+}

@@ -7,8 +7,6 @@ COPY .mvn .mvn
 COPY pom.xml pom.xml
 COPY mvnw mvnw
 
-RUN echo "10.10.0.1       stacionar.dumbo" >> /etc/hosts
-
 RUN ./mvnw dependency:resolve
 
 COPY src src

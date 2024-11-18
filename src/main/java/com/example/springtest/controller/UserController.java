@@ -33,7 +33,7 @@ public class UserController{
     @GetMapping("login")
         public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login.html");
+        modelAndView.setViewName("main_page.html");
         return modelAndView;
     }
 

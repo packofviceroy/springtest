@@ -57,8 +57,8 @@ def buildApp() {
         returnStdout: true
     ).trim()
     echo "${STACIONAR_IP}"
-    sh 'eval $(minikube docker-env) && docker build \
-        -t springtest/latest --add-host stacionar.dumbo:${STACIONAR_IP} ./'
+    sh "eval $(minikube docker-env) && docker build \
+        -t springtest/latest --add-host \"stacionar.dumbo:${STACIONAR_IP}\" ./"
 }
 
 void deployApp() {

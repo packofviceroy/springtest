@@ -54,8 +54,6 @@ def buildApp() {
     userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
     sh "eval \$(minikube docker-env) && docker build \
         -t springtest/latest ./"
-    sh 'kubectl apply -f k8s/db_endpoint.yaml'
-    sh 'kubectl apply -f k8s/db_service.yaml'
 }
 
 void deployApp() {

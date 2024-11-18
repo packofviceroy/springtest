@@ -22,5 +22,23 @@ spec:
         name: latest
         resources: {}
         imagePullPolicy: Never
-
-status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stacionar.dumbo
+spec:
+  type: ExternalName
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: db-server
+subsets:
+  - addresses:
+      - ip: 10.10.0.10
+    ports:
+      - port: 5432

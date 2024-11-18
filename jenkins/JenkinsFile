@@ -53,7 +53,7 @@ def buildApp() {
     checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [],
     userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
     STACIONAR_IP = sh ( 
-        script: 'dig +short stacionar.dumbo'
+        script: 'dig +short stacionar.dumbo',
         returnStdout: true
     ).trim()
     sh 'eval $(minikube docker-env) && docker build \

@@ -29,6 +29,7 @@ metadata:
   name: stacionar
 spec:
   type: ExternalName
+  externalName: stacionar.dumbo
   ports:
     - port: 5432
       targetPort: 5432

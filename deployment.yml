@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: stacionar.dumbo
+  name: stacionar
 spec:
   type: ExternalName
   ports:

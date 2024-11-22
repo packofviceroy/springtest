@@ -11,4 +11,6 @@ RUN ./mvnw dependency:resolve
 
 COPY src src
 
+
+CMD["sleep", "999d"]
 #CMD ["./mvnw", "spring-boot:run"]

@@ -5,6 +5,7 @@ metadata:
   labels:
     app: springtest
   name: springtest
+  namespace: playground
 spec:
   replicas: 1
   selector:
@@ -22,24 +23,6 @@ spec:
         name: latest
         resources: {}
         imagePullPolicy: Never
+        ports:
+          - containerpod: 8080
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: stacionar
-spec:
-  type: ExternalName
-  externalName: stacionar.dumbo
-  ports:
-    - port: 5432
-      targetPort: 5432
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: db-server
-subsets:
-  - addresses:
-      - ip: 10.10.0.10
-    ports:
-      - port: 5432

@@ -26,3 +26,31 @@ spec:
         ports:
           - containerPort: 8080
 ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: springtest
+#   name: springtest-service
+#   namespace: playground
+# spec:
+#   allocateLoadBalancerNodePorts: true
+#   clusterIP: 10.101.69.134
+#   clusterIPs:
+#   - 10.101.69.134
+#   externalTrafficPolicy: Cluster
+#   internalTrafficPolicy: Cluster
+#   ipFamilies:
+#   - IPv4
+#   ipFamilyPolicy: SingleStack
+#   ports:
+#   - nodePort: 31589
+#     port: 8080
+#     protocol: TCP
+#     targetPort: 8080
+#   selector:
+#     app: springtest
+#   sessionAffinity: None
+#   type: LoadBalancer
+# status:
+#   loadBalancer: {}

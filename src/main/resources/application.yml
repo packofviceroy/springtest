@@ -10,4 +10,6 @@ spring:
             maxLifetime: 1800000
             idleTimeout: 600000
 
-logging.level.org.springframework.web: DEBUG
+logging:
+    level:
+        org.springframework.web: DEBUG

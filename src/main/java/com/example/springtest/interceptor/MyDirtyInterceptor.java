@@ -11,7 +11,7 @@ public class MyDirtyInterceptor implements HandlerInterceptor{
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             @Nullable ModelAndView modelAndView) throws Exception {
-                System.out.println("THIS IS POST HANDLE INTERCEPTOR CALLING");
+                System.out.println("THIS IS PRE HANDLE INTERCEPTOR CALLING");
     }
 
 

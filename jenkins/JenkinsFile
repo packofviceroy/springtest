@@ -59,7 +59,7 @@ def buildApp() {
 void deployApp() {
     announceBaner('Deploy App!')
     sh 'kubectl apply -f deployment.yml'
-    sh 'kubectl rollout deployments/springtest'
+    sh 'kubectl rollout deployment/springtest -n playground'
 }
 
 void deployNGINX() {

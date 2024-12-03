@@ -16,10 +16,18 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    // @Override
+    // public User getUserById(int personId) {
+    //     return userRepository.getUserById(personId)
+    //             .orElseThrow(() -> new UserNotFoundException(personId));
+    // }
+
     @Override
-    public User getUser(int personId) {
-        return userRepository.getUserById(personId)
-                .orElseThrow(() -> new UserNotFoundException(personId));
+    public User getUserByName(String name) {
+        return userRepository.getUserByName(name)
+        .orElseThrow(() -> new UserNotFoundException(name));
     }
+
+    
 
 }

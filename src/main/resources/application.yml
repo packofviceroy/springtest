@@ -2,7 +2,7 @@ spring:
     application:
         name: springtest
     datasource:
-        url: jdbc:postgresql://stacionar.dumbo:5432/test_user
+        url: jdbc:postgresql://stacionar.dumbo:5432/springtest
         username: test_user
         password: hellothere
         hikari:

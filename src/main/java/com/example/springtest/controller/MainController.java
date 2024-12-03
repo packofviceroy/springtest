@@ -1,6 +1,7 @@
 package com.example.springtest.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +17,11 @@ import com.example.springtest.service.UserService;
 
 @RestController
 @RequestMapping("/")
-public class UserController{
+public class MainController{
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public MainController(UserService userService) {
         this.userService = userService;
     }
 
@@ -30,7 +31,8 @@ public class UserController{
         System.out.println(body);
     }
 
-    @GetMapping("login")
+    @GetMapping("main")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
         public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main_page.html");
@@ -46,8 +48,9 @@ public class UserController{
 
 
     @GetMapping(value = "database/user/{value}")
-    public User getUserByID(@PathVariable int value) {
-        return userService.getUser(value);
+    @PreAuthorize("hasAuthority('ROLE_DB')")
+    public User getUserByID(@PathVariable String value) {
+        return userService.getUserByName(value);
     }
     
 }

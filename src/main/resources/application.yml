@@ -13,3 +13,5 @@ spring:
 logging:
     level:
         org.springframework.web: DEBUG
+        org.springframework.security.config.core: DEBUG
+        org.springframework.security.web: DEBUG

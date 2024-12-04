@@ -15,6 +15,7 @@ import com.example.springtest.model.User;
 import com.example.springtest.service.UserService;
 
 
+
 @RestController
 @RequestMapping("/")
 public class MainController{
@@ -30,16 +31,25 @@ public class MainController{
     public void auth(@RequestBody String body) {
         System.out.println(body);
     }
-
+    
     @GetMapping("main")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-        public ModelAndView login() {
+    // @PreAuthorize("hasAuthority('ROLE_USER')")
+        public ModelAndView mainPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main_page.html");
         return modelAndView;
     }
 
+    // @GetMapping("login")
+    // // @PreAuthorize("hasAuthority('ROLE_USER')")
+    //     public ModelAndView login() {
+    //     ModelAndView modelAndView = new ModelAndView();
+    //     modelAndView.setViewName("login.html");
+    //     return modelAndView;
+    // }
+
     @GetMapping("loginError")
+    // @PreAuthorize("hasAuthority('ROLE_USER')")
         public ModelAndView loginError() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("loginError.html");

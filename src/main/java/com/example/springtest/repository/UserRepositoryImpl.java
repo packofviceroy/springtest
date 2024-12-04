@@ -11,8 +11,8 @@ import com.example.springtest.model.User;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    String SQL_GET_USER_BY_ID = "select * from springtest.user_table where id=:id";
-    String SQL_GET_USER_BY_NAME = "select * from springtest.user_table where name=:name";
+    String SQL_GET_USER_BY_ID = "select * from user_table where id=:id";
+    String SQL_GET_USER_BY_NAME = "select * from user_table where name=:name";
 
     private final UserMapper userMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;

@@ -1,3 +1,5 @@
+package com.example.springtest.repository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;

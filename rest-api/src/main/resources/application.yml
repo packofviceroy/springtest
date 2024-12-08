@@ -15,3 +15,9 @@ logging:
         org.springframework.web: DEBUG
         org.springframework.security.config.core: DEBUG
         org.springframework.security.web: DEBUG
+
+myapp:
+    myvars:
+        security:
+            lifetime: 36000
+            secret: svasdjlnkmsdv!@#

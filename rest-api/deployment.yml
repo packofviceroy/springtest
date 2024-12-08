@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: springtest
-  name: springtest
+    app: springtest-restful
+  name: springtest-restful
   namespace: playground
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springtest
+      app: springtest-restful
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: springtest
+        app: springtest-restful
     spec:
       containers:
-      - image: springtest/latest
+      - image: springtest-restful/latest
         name: latest
         resources: {}
         imagePullPolicy: Never

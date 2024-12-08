@@ -2,7 +2,6 @@ package com.example.springtest.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.example.springtest.interceptor.MyDirtyInterceptor;
@@ -15,11 +14,5 @@ public class WebConfig implements WebMvcConfigurer{
         registry.addInterceptor(new MyDirtyInterceptor());
     }
 
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/Users/**")
-                .addResourceLocations("/Users/");
-    }
 }
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Sign in site</title>
+    <meta name="ROBOTS" content="NOFOLLOW">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+</head>
+
+<body class="app-sign-in-register">
+    <section class="app-sign-in-register__branding">
+        <div class="app-sign-in-register__branding__starburst"></div>
+    </section>
+    <main id="main-panel" class="app-sign-in-register__content">
+        <div class="app-sign-in-register__content-inner">
+            <h1>Sign in to test spring</h1>
+            <form method="post" name="login" action=/api/rest/security/login>
+                <div>
+                    <label class="app-sign-in-register__form-label" for="t_username">Username</label>
+                    <input autocorrect="off" autocomplete="off" name="t_username" id="t_username" type="text"
+                        autofocus="autofocus" class="input-class" autocapitalize="off">
+                </div>
+                <div>
+                    <label class="app-sign-in-register__form-label" for="t_password">Password</label>
+                    <input name="t_password" id="t_password" type="password" class="input-class">
+                </div>
+                <div class="myclass-checkbox">
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <label for="remember_me">Keep me signed in</label>
+                </div>
+                <input name="from" type="hidden" value="/">
+                <button type="submit" name="Submit" class="myclass-button myclass-button--primary">Sign in</button>
+            </form>
+            <div class="footer"></div>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+
+</html>

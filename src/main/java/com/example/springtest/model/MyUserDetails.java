@@ -3,6 +3,7 @@ package com.example.springtest.model;
 
 import java.util.Collection;
 
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,8 +15,11 @@ public class MyUserDetails implements UserDetails{
     private String roles;
     
 
-    MyUserDetails(String password, String name, int id, String roles){
-
+    public MyUserDetails(String password, String name, int id, String roles){
+        this.password = password;
+        this.name = name;
+        this.id = id;
+        this.roles = roles;
     }
     
     public static MyUserDetails build(User user) {
@@ -24,8 +28,8 @@ public class MyUserDetails implements UserDetails{
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return null;
+        // throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
     }
 
     @Override

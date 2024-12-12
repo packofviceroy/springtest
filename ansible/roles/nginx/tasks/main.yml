@@ -1,0 +1,15 @@
+- name: Ping my hosts
+  ping:
+- name: Create Temp Dir
+  tempfile:
+    state: directory
+    suffix: templates
+  register: temp_dir
+- name: Template files
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir.path }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
+  with_fileglob:
+    - templates/*.j2
+- name: Copy files
+  

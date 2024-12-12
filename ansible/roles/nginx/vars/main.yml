@@ -1,0 +1,5 @@
+application_host: stacionar.dumbo
+application_port: 8080  
+
+#Paths
+resource_dir: /var/www/resources

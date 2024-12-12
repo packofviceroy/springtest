@@ -9,36 +9,35 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = loginForm.t_password.value;
         const rememberMe = loginForm.remember_me.checked;
 
-        try {
-            // Подготовка параметров URL
-            const queryParams = new URLSearchParams({
-                username: username,
-                password: password,
-                rememberMe: rememberMe
-            }).toString();
+        // Подготовка тела запроса
+        const requestData = {
+            username: username,
+            password: password,
+            rememberMe: rememberMe
+        };
 
-            // Отправка GET-запроса с параметрами в URL
-            const response = await fetch(`/api/rest/security/signin?${queryParams}`, {
+        try {
+            // Отправка POST-запроса к API
+            const response = await fetch('/api/rest/security/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(requestData)
             });
 
             if (response.ok) {
                 // Обработка успешного ответа
-                const token = await response.text(); // Ответ в виде строки
-
+                const data = await response.text();
                 // Сохранение токена в localStorage (или другом месте)
-                localStorage.setItem('jwtToken', token);
-                alert('Login successful! Token saved.');
-
+                localStorage.setItem('jwtToken', data);
                 // Перенаправление пользователя
                 window.location.href = '/main_page';
             } else {
                 // Обработка ошибок
-                const errorText = await response.text();
-                alert(`Login failed: ${errorText || 'Unknown error'}`);
+                const errorData = await response.json();
+                alert(`Login failed: ${errorData.message || 'Unknown error'}`);
+                window.location.href = '/loginError'
             }
         } catch (error) {
             console.error('Error during login:', error);

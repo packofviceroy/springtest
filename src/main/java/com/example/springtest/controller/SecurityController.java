@@ -2,7 +2,15 @@
 package com.example.springtest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +37,9 @@ public class SecurityController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    AuthenticationProvider authenticationProvider;
+
 
     public SecurityController(UserService userService) {
         this.userService = userService;
@@ -36,24 +47,17 @@ public class SecurityController {
     
     @PostMapping("signin")
     ResponseEntity<?> signin(@RequestBody SignInRequest entity) {
-        
-        //TODO: Add username password validation
-        User user = null;
+            Authentication authentication = null;
+            String jwt = null;
         try{
-            user = userService.getUserByName(entity.getUsername());
-            if (user != null){
-                if (passwordEncoder.matches(entity.getPassword(),user.getPassword())){
-                    return ResponseEntity.ok("123");
-                }else{
-                    throw new UserNotFoundException(user.getName());
-                }
-            }
-        }catch (Exception e){
+            authentication = authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(entity.getUsername(), entity.getPassword()));
+        }catch (AuthenticationException e){
             System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatusCode.valueOf(403)).body("123");
         }
-
-        return ResponseEntity.badRequest().build();
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        jwt = jwtAuth.generateToken(authentication);
+        return ResponseEntity.ok(jwt);
     }
     
 }

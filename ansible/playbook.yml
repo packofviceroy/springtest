@@ -1,0 +1,4 @@
+- name: Main
+  hosts: webservers
+  roles:
+    - nginx

@@ -1,5 +1,8 @@
+#Application
 application_host: stacionar.dumbo
 application_port: 8080  
 
-#Paths
+#NGINX
 resource_dir: /var/www/resources
+nginx_sites_conf_dir: /opt/homebrew/etc/nginx/sites-available
+nginx_conf_dir: /opt/homebrew/etc/nginx/

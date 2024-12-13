@@ -1,15 +1,40 @@
 - name: Ping my hosts
   ping:
+
+- name: Check resource directory
+  file: 
+    path: "{{ resource_dir }}"
+    state: directory
+
+- name: Check nginx directory
+  file: 
+    path: "{{ nginx_conf_dir }}"
+    state: directory
+
+- name: Check nginx sites directory
+  file: 
+    path: "{{ nginx_sites_conf_dir }}"
+    state: directory
+
 - name: Create Temp Dir
   tempfile:
     state: directory
     suffix: templates
   register: temp_dir
+
 - name: Template files
   template:
     src: "{{ item }}"
     dest: "{{ temp_dir.path }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
   with_fileglob:
     - templates/*.j2
+
 - name: Copy files
-  
+  copy:
+    src: "{{ temp_dir.path }}/"
+    dest: "{{ nginx_sites_conf_dir }}"
+
+- name: Copy files
+  copy:
+    src: files/
+    dest: "{{ resource_dir }}"

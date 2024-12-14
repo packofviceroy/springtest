@@ -20,11 +20,14 @@ spec:
     spec:
       containers:
       - image: springtest-restful/latest
-        name: latest
+        name: app
         resources: {}
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         ports:
           - containerPort: 8080
+        volumeMounts:
+          - name: spring-application-config
+            mountPath: /usr/src/myserver/target/classes/application.yml
 ---
 kind: ConfigMap
 apiVersion: v1

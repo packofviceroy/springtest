@@ -4,9 +4,7 @@ spring:
     cloud:
         kubernetes:
             config:
-                name: 
-                sources:
-                    - name: springtest_application.conf
+                name: springtest-restful
 
 #     datasource:
 #         url: jdbc:postgresql://stacionar.dumbo:5432/springtest

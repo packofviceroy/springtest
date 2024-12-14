@@ -54,7 +54,7 @@ def buildApp() {
     userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:packofviceroy/springtest.git']])
     sh 'cd ansible && ansible-playbook -i ansible_hosts playbook.yml --tags "application"'
     sh "eval \$(minikube docker-env) && docker build \
-        -t springtest-restful/latest ./"
+        -t springtest-restful ./"
 
 }
 

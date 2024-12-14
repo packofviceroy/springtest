@@ -1,0 +1,7 @@
+#Application
+application_host: localhost
+application_port: 8080  
+
+#Database
+database_host: stacionar.dumbo
+database_port: 5432

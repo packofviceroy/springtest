@@ -1,23 +1,30 @@
 spring:
     application:
         name: springtest
-    datasource:
-        url: jdbc:postgresql://stacionar.dumbo:5432/springtest
-        username: test_user
-        password: hellothere
-        hikari:
-            connectionTimeout: 30000 
-            maxLifetime: 1800000
-            idleTimeout: 600000
+    cloud:
+        kubernetes:
+            config:
+                name: 
+                    sources:
+                        - name: springtest_application.conf
 
-logging:
-    level:
-        org.springframework.web: DEBUG
-        org.springframework.security.config.core: DEBUG
-        org.springframework.security.web: DEBUG
+#     datasource:
+#         url: jdbc:postgresql://stacionar.dumbo:5432/springtest
+#         username: test_user
+#         password: hellothere
+#         hikari:
+#             connectionTimeout: 30000 
+#             maxLifetime: 1800000
+#             idleTimeout: 600000
 
-myapp:
-    myvars:
-        security:
-            lifetime: 36000
-            secret: svasdjlnkmsdv!@#
+# logging:
+#     level:
+#         org.springframework.web: DEBUG
+#         org.springframework.security.config.core: DEBUG
+#         org.springframework.security.web: DEBUG
+
+# myapp:
+#     myvars:
+#         security:
+#             lifetime: 36000
+#             secret: svasdjlnkmsdv!@#

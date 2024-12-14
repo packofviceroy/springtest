@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springtest-restful
+  name: springtest-restful
+  namespace: playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springtest-restful
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springtest-restful
+    spec:
+      containers:
+      - image: springtest-restful/latest
+        name: latest
+        resources: {}
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8080
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: springtest_application
+data:
+  application.yaml: |-
+    datasource:
+        url: jdbc:postgresql://{{ database_host }}:5432/springtest
+        username: test_user
+        password: hellothere
+        hikari:
+            connectionTimeout: 30000 
+            maxLifetime: 1800000
+            idleTimeout: 600000
+    logging:
+        level:
+            org.springframework.web: DEBUG
+            org.springframework.security.config.core: DEBUG
+            org.springframework.security.web: DEBUG
+    myapp:
+        myvars:
+            security:
+                lifetime: 36000
+                secret: svasdjlnkmsdv!@#

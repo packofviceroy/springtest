@@ -1,4 +1,7 @@
-- name: Main
+- name: NGINX
   hosts: webservers
   roles:
-    - nginx
+    - role: nginx
+      tags: nginx
+    - role: application
+      tags: application

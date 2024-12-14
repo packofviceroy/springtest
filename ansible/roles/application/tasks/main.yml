@@ -1,0 +1,33 @@
+- name: Ping my hosts
+  ping:
+
+- name: Create Temp Dir
+  tempfile:
+    state: directory
+    suffix: templates
+  register: temp_dir
+
+# - name: DEbug template
+#   debug:
+#     msg: "{{ lookup('ansible.builtin.template', 'templates/main.j2') }}"
+
+- name: Template files
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir.path }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
+  with_fileglob:
+    - templates/*.j2
+
+# - name: Show current path
+#   debug:
+#     msg: "{{ playbook_dir }}"
+
+- name: Copy templates
+  copy:
+    src: "{{ temp_dir.path }}/"
+    dest: ../
+
+# - name: Copy files
+#   copy:
+#     src: files/
+#     dest: "{{ resource_dir }}"

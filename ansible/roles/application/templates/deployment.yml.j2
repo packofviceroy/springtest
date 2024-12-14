@@ -27,7 +27,8 @@ spec:
           - containerPort: 8080
         volumeMounts:
           - name: springtest-restful-volume
-            mountPath: /usr/src/myserver/target/classes/application.yml
+            mountPath: /usr/src/myserver/target/classes/config
+            subPath: application.yml
       volumes:
         - name: springtest-restful-volume
           configMap:

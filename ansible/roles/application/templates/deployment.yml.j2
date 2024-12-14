@@ -28,6 +28,11 @@ spec:
         volumeMounts:
           - name: springtest-restful
             mountPath: /usr/src/myserver/target/classes/application.yml
+        volumes:
+          - name: springtest-restful
+            configMap:
+              name: springtest-restful
+
 ---
 kind: ConfigMap
 apiVersion: v1

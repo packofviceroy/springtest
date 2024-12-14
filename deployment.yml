@@ -26,27 +26,31 @@ spec:
         ports:
           - containerPort: 8080
 ---
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: springtest_application
-data:
-  application.yaml: |-
-    datasource:
-        url: jdbc:postgresql://stacionar.dumbo:5432/springtest
-        username: test_user
-        password: hellothere
-        hikari:
-            connectionTimeout: 30000 
-            maxLifetime: 1800000
-            idleTimeout: 600000
-    logging:
-        level:
-            org.springframework.web: DEBUG
-            org.springframework.security.config.core: DEBUG
-            org.springframework.security.web: DEBUG
-    myapp:
-        myvars:
-            security:
-                lifetime: 36000
-                secret: svasdjlnkmsdv!@#
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: springtest
+#   name: springtest-service
+#   namespace: playground
+# spec:
+#   allocateLoadBalancerNodePorts: true
+#   clusterIP: 10.101.69.134
+#   clusterIPs:
+#   - 10.101.69.134
+#   externalTrafficPolicy: Cluster
+#   internalTrafficPolicy: Cluster
+#   ipFamilies:
+#   - IPv4
+#   ipFamilyPolicy: SingleStack
+#   ports:
+#   - nodePort: 31589
+#     port: 8080
+#     protocol: TCP
+#     targetPort: 8080
+#   selector:
+#     app: springtest
+#   sessionAffinity: None
+#   type: LoadBalancer
+# status:
+#   loadBalancer: {}

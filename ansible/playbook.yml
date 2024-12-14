@@ -1,7 +1,11 @@
 - name: NGINX
   hosts: webservers
+  tags: nginx
   roles:
     - role: nginx
-      tags: nginx
+
+- name: Application
+  hosts: application
+  tags: application
+  roles:
     - role: application
-      tags: application

@@ -6,7 +6,6 @@
     state: directory
     suffix: templates
   register: temp_dir
-  when: "'application' in {{group_names}}"
 
 # - name: DEbug template
 #   debug:
@@ -18,8 +17,6 @@
     dest: "{{ temp_dir.path }}/{{ item | basename | regex_replace('\\.j2$', '') }}"
   with_fileglob:
     - templates/*.j2
-  when: "'application' in {{group_names}}"
-
 
 # - name: Show current path
 #   debug:
@@ -29,8 +26,6 @@
   copy:
     src: "{{ temp_dir.path }}/"
     dest: "{{ playbook_dir }}/../"
-  when: "'application' in {{group_names}}"
-
 
 # - name: Copy files
 #   copy:

@@ -42,21 +42,22 @@ metadata:
   namespace: playground
 data:
   application.yaml: |-
-    datasource:
+    spring:
+      datasource:
         url: jdbc:postgresql://{{ database_host }}:5432/springtest
         username: test_user
         password: hellothere
         hikari:
-            connectionTimeout: 30000 
-            maxLifetime: 1800000
-            idleTimeout: 600000
-    logging:
+          connectionTimeout: 30000 
+          maxLifetime: 1800000
+          idleTimeout: 600000
+      logging:
         level:
-            org.springframework.web: DEBUG
-            org.springframework.security.config.core: DEBUG
-            org.springframework.security.web: DEBUG
-    myapp:
+          org.springframework.web: DEBUG
+          org.springframework.security.config.core: DEBUG
+          org.springframework.security.web: DEBUG
+      myapp:
         myvars:
-            security:
-                lifetime: 36000
-                secret: svasdjlnkmsdv!@#
+          security:
+            lifetime: 36000
+            secret: svasdjlnkmsdv!@#

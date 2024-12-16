@@ -1,10 +1,10 @@
 spring:
-    application:
+  application:
+      name: springtest-restful
+  cloud:
+    kubernetes:
+      config:
         name: springtest-restful
-    cloud:
-        kubernetes:
-            config:
-                name: springtest-restful
 
 #     datasource:
 #         url: jdbc:postgresql://stacionar.dumbo:5432/springtest

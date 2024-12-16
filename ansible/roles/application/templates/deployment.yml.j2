@@ -25,14 +25,6 @@ spec:
         imagePullPolicy: Never
         ports:
           - containerPort: 8080
-        volumeMounts:
-          - name: springtest-restful-volume
-            mountPath: /usr/src/myserver/target/classes/config
-            subPath: application.yml
-      volumes:
-        - name: springtest-restful-volume
-          configMap:
-            name: springtest-restful
 
 ---
 kind: ConfigMap
@@ -41,7 +33,7 @@ metadata:
   name: springtest-restful
   namespace: playground
 data:
-  application.yaml: |-
+  springtest-restful.yaml: |-
     spring:
       datasource:
         url: jdbc:postgresql://{{ database_host }}:5432/springtest

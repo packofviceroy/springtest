@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: kubernetes
   application:
       name: springtest-restful
   cloud:

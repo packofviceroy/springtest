@@ -18,22 +18,28 @@ spec:
       labels:
         app: springtest-restful
     spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: springtest-restful-configmap
       containers:
-      - image: springtest-restful
-        name: app
+      - name: app
+        image: springtest-restful
         resources: {}
         imagePullPolicy: Never
         ports:
           - containerPort: 8080
-
+        volumeMounts:
+          - name: config-volume
+            mountPath: "/usr/src/myserver/config"
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: springtest-restful
+  name: springtest-restful-configmap
   namespace: playground
 data:
-  springtest-restful.yaml: |-
+  application.yaml: |-
     spring:
       datasource:
         url: jdbc:postgresql://{{ database_host }}:5432/springtest
